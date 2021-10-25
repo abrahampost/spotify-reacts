@@ -3,7 +3,8 @@ const   express = require('express'),
         morgan = require('morgan'),
         cookieParser = require('cookie-parser'),
         jwt         = require('jsonwebtoken'),
-        initTables = require('./db/init-tables').initTables;
+        initTables = require('./db/init-tables').initTables,
+        path        = require('path');
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -34,8 +35,12 @@ try {
     console.error(e);
 }
 
-if (process.env.NODE_ENVIRONMENT === 'production') {
-    app.use(express.static('./ui/build'));
+if (process.env.NODE_ENV === 'production') {
+    console.log('serving assets at: ' + path.join(__dirname, 'ui/build'))
+    app.use(express.static(path.join(__dirname, 'ui/build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'ui/build/index.html'));
+    })
 }
 
 module.exports = app;

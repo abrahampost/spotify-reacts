@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Redirect } from 'react-router-dom';
+
 import { Route, Switch } from 'react-router-dom';
 import { Album } from "../views/Album";
 import { Home } from "../views/Home";
@@ -16,10 +18,11 @@ export enum RoutePaths {
 export const Routes = () => {
     return (
         <Switch>
-            <Route path={RoutePaths.LOGIN} component={Login} />
-            <Route path={RoutePaths.REGISTER} component={Register} />
-            <Route path={RoutePaths.ALBUMS + '/:id'} component={Album} />
-            <Route path={RoutePaths.HOME} component={Home} />
+            <Route exact path={RoutePaths.LOGIN} component={Login} />
+            <Route exact path={RoutePaths.REGISTER} component={Register} />
+            <Route exact path={RoutePaths.ALBUMS + '/:id'} component={Album} />
+            <Route exact path={RoutePaths.HOME} component={Home} />
+            <Route path="*" component={() => <Redirect to={RoutePaths.HOME} />} />
         </Switch>
     );
 }
