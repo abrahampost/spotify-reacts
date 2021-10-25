@@ -1,10 +1,8 @@
 const   express = require('express'),
         router  = express.Router(),
         spotifyService = require('../services/spotifyService'),
-        reviewService = require('../services/reviewService');
-
-let releaseCache = {};
-
+        reviewService = require('../services/reviewService'),
+        { cache } = require('../db/cache');
 
 router.get('/search', async (req, res, next) => {
     try {
@@ -18,12 +16,12 @@ router.get('/search', async (req, res, next) => {
 
 router.get('/releases', async (req, res, next) => {
     try {
-        if (releaseCache[req.route.path]) {
-            res.send(releaseCache[req.route.path]);
+        if (cache.get(req.route.path)) {
+            res.send(cache.get(req.route.path));
             return;
         }
         let data = await spotifyService.getNewReleases();
-        releaseCache[req.route.path] = data;
+        cache.put(req.route.path, data, 3600000);
         res.json(data);
     } catch (e) {
         next(e);

@@ -1,19 +1,18 @@
 const   express   = require('express'),
         router  = express.Router(),
-        spotifyService = require('../services/spotifyService');
-
-let albumCache = {};
+        spotifyService = require('../services/spotifyService'),
+        { cache } = require('../db/cache');
 
 router.get('/:id/albums', async (req, res, next) => {
     try {
-        if (albumCache[req.route.path]) {
-            res.json(albumCache[req.route.path]);
+        if (cache.get(req.route.path)) {
+            res.json(cache.get(req.route.path));
             return;
         }
         let artistId = req.params.id;
         let currentAlbum = req.query.current;
         let otherAlbums = await spotifyService.getAlbumsByArtist(artistId, currentAlbum);
-        albumCache[req.route.path] = otherAlbums;
+        cache.put(req.route.path, otherAlbums, 3600000);
         res.json(otherAlbums);
     } catch (e) {
         next(e);

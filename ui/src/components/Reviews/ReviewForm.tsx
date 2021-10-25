@@ -18,6 +18,7 @@ export const ReviewForm:React.FC<ReviewFormProps> = ({ albumId }) => {
     const submitReview = async (data: IReviewAPIRequest) => {
         await saveReview(albumId, data);
         queryClient.invalidateQueries('getReviews');
+        queryClient.invalidateQueries('getAlbum');
         reset();
     }
 
