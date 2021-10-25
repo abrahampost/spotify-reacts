@@ -1,0 +1,47 @@
+@import '../../styles/variables.scss';
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    textarea {
+        margin: 16px 0;
+        border-radius: 4px;
+        padding: 8px;
+        font-family: 'Lexend', sans-serif;
+        border: none;
+    }
+
+    input, textarea {
+        box-shadow: $shadow;
+
+    }
+
+    .user-name {
+        background: white;
+        margin-bottom: 16px;
+        border-radius: 4px;
+    }
+}
+
+.review {
+    .info {
+        .title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            h6 {
+                font-weight: bold;
+            }
+        }
+        .rating {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+    }
+    margin-bottom: 16px;
+}

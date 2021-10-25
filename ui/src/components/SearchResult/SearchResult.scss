@@ -1,0 +1,44 @@
+.search-result {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 8px 0;
+    height: 150px;
+
+    &.small {
+        height: 75px;
+
+        .album-art {
+            height: 75px;
+            width: 75px;
+            flex-shrink: 0;
+        }
+    }
+
+    .album-art {
+        width: 150px;
+        height: 150px;
+        flex-shrink: 0;
+        border-right: 1px solid grey;
+        cursor: pointer;
+    }
+
+    .info {
+        flex-grow: 1;
+        text-overflow: ellipsis;
+    }
+
+    .released {
+        margin-top: 8px;
+    }
+
+    .spotify-link {
+        background-size: contain;
+        background-image: url(../../assets/Spotify.png);
+        height: 34px;
+        width: 34px;
+        margin: 4px 0;
+        content: '';
+        cursor: pointer;
+    }
+}

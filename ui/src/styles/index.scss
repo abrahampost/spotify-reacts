@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lexend', sans-serif;
+    color: $text-color;
+    background: #e8e8e8;
+}
+
+#root {
+    height: 100%;
+}
