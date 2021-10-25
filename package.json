@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "env-cmd -f ./env.local.json nodemon index.js",
     "postinstall": "cd ui && npm install && npm run build",
-    "start": "node index.js"
+    "start": "node index.js",
+    "prod": "env-cmd -f ./env.production.json node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "memory-cache": "^0.2.0",
     "morgan": "^1.10.0",
+    "pg": "^8.7.1",
     "sequelize": "^6.6.5",
     "spotify-web-api-node": "^5.0.2",
     "sqlite3": "^5.0.2"
