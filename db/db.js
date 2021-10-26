@@ -2,10 +2,12 @@ let Sequelize = require('sequelize');
 
 let options = {
     dialect: process.env.DATABASE_DIALECT,
-    logging: false,
+    logging: false
 }
 if (process.env.DATABASE_DIALECT === 'sqlite') {
     options['storage'] = process.env.DATABASE_STORAGE;
+} else if (process.env.DATABASE_DIALECT === 'postgres') {
+    options['dialectOptions'] = { ssl: true };
 }
 
 let sequelize = new Sequelize(process.env.DATABASE_URL, options);
