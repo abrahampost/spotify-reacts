@@ -7,7 +7,8 @@ let options = {
 if (process.env.DATABASE_DIALECT === 'sqlite') {
     options['storage'] = process.env.DATABASE_STORAGE;
 } else if (process.env.DATABASE_DIALECT === 'postgres') {
-    options['dialectOptions'] = { ssl: true };
+    options['protocol'] = 'postgres';
+    options['dialectOptions'] = { ssl: true, rejectUnauthorized: false };
 }
 
 let sequelize = new Sequelize(process.env.DATABASE_URL, options);
