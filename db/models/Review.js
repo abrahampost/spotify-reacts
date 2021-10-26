@@ -14,7 +14,7 @@ const Review = exports.Model = db.define('review', {
         require: true
     },
     rating: {
-        type: Sequelize.DataTypes.NUMBER,
+        type: Sequelize.DataTypes.DECIMAL(10, 2),
         allowNull: false,
         require: true
     },

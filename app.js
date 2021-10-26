@@ -30,7 +30,12 @@ const exceptionHandler = require('./exceptions/exceptionHandler');
 app.use(exceptionHandler);
 
 try {
-    initTables();
+    initTables()
+        .then(() => {
+            console.log('Successfully created tables');
+        }, (err) => {
+            console.error('Unable to create tables', err);
+        });
 } catch(e) {
     console.error(e);
 }
